@@ -3,14 +3,14 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/jesyscyclist"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
   "files": [
     "dist/**/*"
   ],
-  "types":"dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
