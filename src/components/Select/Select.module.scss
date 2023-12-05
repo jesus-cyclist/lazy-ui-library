@@ -1,0 +1,144 @@
+.select {
+  position: relative;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2px;
+  max-width: 15em;
+  width: 100%;
+  padding: 0.2em;
+  cursor: pointer;
+  text-transform: uppercase;
+  svg {
+    margin-left: 10px;
+    width: 0.8em;
+    height: 0.8em;
+  }
+}
+
+.selectDisabled {
+  opacity: 0.3;
+}
+
+.angle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.2em;
+}
+
+.angleEnter {
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+}
+
+.angleEnterActive {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleEnterDone {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleExit {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleExitActive {
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+}
+
+.selectList {
+  list-style: none;
+  position: absolute;
+  top: 2em;
+  left: -1px;
+  right: -1px;
+  border: 1px solid black;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+
+.selectListEnter {
+  transform: scaleY(0);
+  .selectOption {
+    span {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+  }
+}
+
+.selectListEnterActive {
+  transform: scaleY(1);
+  .selectOption {
+    span {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+
+.selectListEnterDone {
+  transform: scaleY(1);
+  .selectOption {
+    span {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+
+.selectListExit {
+  transform: scaleY(1);
+  .selectOption {
+    span {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+  }
+}
+
+.selectListExitActive {
+  transform: scaleY(0);
+  .selectOption {
+    span {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+  }
+}
+
+.selectOption {
+  display: inline-block;
+  width: 100%;
+  padding: 0.2em;
+  cursor: pointer;
+  transform: translateX(0px);
+  transition: transform 0.5s ease;
+  span {
+    display: block;
+    transform: translateX(20px) scaleY(0);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+}
+
+.selectOption:hover {
+  transform: translateX(5px);
+  transition: transform 0.5s ease;
+}

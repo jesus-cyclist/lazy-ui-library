@@ -23,6 +23,7 @@ module.exports = [
     plugins: [
       typescript({
         tsconfig: "./tsconfig.json",
+        exclude: ["**/*.stories.tsx"],
       }),
       postcss({
         extract: "index.css",
