@@ -1,0 +1,118 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  max-width: 15rem;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  line-height: 1.2;
+  font-size: 1rem;
+  font-weight: inherit;
+  border-radius: 0.1rem;
+  font-family: inherit;
+  padding: 0.1rem 0.2rem;
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: transform 0.5s ease;
+  left: 0.2rem;
+  display: inline-block;
+  cursor: text;
+  text-transform: uppercase;
+}
+
+.placeholderEnter {
+  transform: translate(0, -50%);
+  transition: transform 0.5s ease;
+}
+
+.placeholderEnterActive {
+  transform: translateY(-2rem);
+}
+
+.placeholderEnterDone {
+  transform: translateY(-2rem);
+}
+
+input::placeholder {
+  opacity: 0;
+}
+
+.input:focus ~ .placeholder {
+  transform: translateY(-2rem);
+  transition: transform 0.5s ease;
+  cursor: auto;
+}
+
+.deleteAction,
+.revealAction {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  svg {
+    height: 0.6rem;
+    width: 0.6rem;
+    opacity: 0;
+    transform: rotate(45deg);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+}
+
+.revealAction {
+  svg {
+    height: 0.8rem;
+    width: 0.8rem;
+    transform: rotate(0deg);
+  }
+}
+
+.revealActionEnter {
+  svg {
+    opacity: 0;
+  }
+}
+.revealActionEnterActive {
+  svg {
+    opacity: 1;
+
+    transition: opacity 0.5s ease;
+  }
+}
+.revealActionEnterDone {
+  svg {
+    opacity: 1;
+  }
+}
+
+.revealActionEnter {
+  svg {
+    opacity: 0;
+  }
+}
+.deleteActionEnterActive {
+  svg {
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+}
+.deleteActionEnterDone {
+  svg {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}

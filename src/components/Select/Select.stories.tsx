@@ -10,23 +10,30 @@ export default {
     options: ["one", "two", "three"],
     value: "two",
     onChange: () => {},
-    placeholder: "",
+    placeholder: "placeholder",
     isDisabled: true,
+    isOpen: false,
   },
   parameters: {
     controls: {
-      exclude: ["onChange", "value"],
+      exclude: ["onChange", "value", "open"],
     },
   },
-} as Meta<TSelectProps>;
+} as Meta<TSelectStoryProps>;
 
-type SelectStoryProps = Pick<
+type TSelectStoryProps = Pick<
   TSelectProps,
-  "options" | "value" | "onChange" | "placeholder" | "isDisabled"
+  | "options"
+  | "value"
+  | "onChange"
+  | "placeholder"
+  | "isDisabled"
+  | "open"
+  | "isOpen"
 >;
 
-export const SelectStoryTemplate: StoryFn<SelectStoryProps> = ({ ...args }) => (
-  <Select {...args} />
-);
+export const SelectStoryTemplate: StoryFn<TSelectStoryProps> = ({
+  ...args
+}) => <Select {...args} />;
 
-SelectStoryTemplate.storyName = "Accordion";
+SelectStoryTemplate.storyName = "Select";

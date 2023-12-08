@@ -1,11 +1,24 @@
 .button {
+  text-transform: uppercase;
   cursor: pointer;
-  border: none;
-  background: var(--primary);
-  color: var(--secondaryTextColor);
+  background: var(--background-color);
+  transition: background 0.5s ease;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  line-height: 1.2;
+  font-size: 1rem;
+  font-weight: inherit;
+  border-radius: 0.1rem;
+  font-family: inherit;
+  padding: 0.1rem 0.2rem;
+}
 
-  font-size: 2.5rem;
-  font-weight: var(--semiBold);
-  padding: 1rem 2rem;
-  border-radius: 0.2rem;
+.buttonDisabled {
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.button:hover {
+  background: var(--background-color-secondary-hover);
+  transition: background 0.5s ease;
 }

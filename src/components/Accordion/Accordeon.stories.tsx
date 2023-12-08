@@ -8,22 +8,23 @@ export default {
   args: {
     isOpen: false,
     title: "title",
-    children: "content",
+    children:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, rem, officia fugit itaque alias quia iste incidunt tempora porro velit ratione reiciendis. Quod ipsum, placeat saepe ullam similique deleniti rem!",
   },
   parameters: {
     controls: {
-      exclude: ["innerControl", "onToggle"],
+      exclude: ["onToggle", "open"],
     },
   },
-} as Meta<AccordionStoryProps>;
+} as Meta<TAccordionStoryProps>;
 
-type AccordionStoryProps = Pick<
+type TAccordionStoryProps = Pick<
   AccordionProps,
-  "isOpen" | "title" | "children"
+  "isOpen" | "onToggle" | "children" | "title" | "open"
 >;
 
-export const AccordionStoryTemplate: StoryFn<AccordionStoryProps> = ({
+export const AccordionStoryTemplate: StoryFn<TAccordionStoryProps> = ({
   ...args
-}) => <Accordion {...args} innerControl />;
+}) => <Accordion {...args} />;
 
 AccordionStoryTemplate.storyName = "Accordion";

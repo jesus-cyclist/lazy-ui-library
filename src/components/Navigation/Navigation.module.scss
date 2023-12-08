@@ -1,0 +1,183 @@
+.navigation {
+  width: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  height: 2rem;
+  position: relative;
+}
+
+.hambButton {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+  span {
+    width: 1.5rem;
+    height: 0.2rem;
+    border-radius: 0.2em;
+    background: var(--text-color);
+  }
+  span:nth-child(1) {
+    animation: buttonAnimationGetCloseLine1 0.5s ease forwards;
+  }
+  span:nth-child(2) {
+    animation: buttonAnimationGetCloseLine2 0.5s ease forwards;
+  }
+  span:nth-child(3) {
+    animation: buttonAnimationGetCloseLine3 0.5s ease forwards;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hambButton {
+    display: none;
+  }
+}
+
+.hambButtonEnterDone {
+  span:nth-child(1) {
+    animation: buttonAnimationGetActiveLine1 0.5s ease forwards;
+  }
+  span:nth-child(2) {
+    animation: buttonAnimationGetActiveLine2 0.5s ease forwards;
+  }
+  span:nth-child(3) {
+    animation: buttonAnimationGetActiveLine3 0.5s ease forwards;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 2rem);
+  list-style: none;
+  background-color: var(--background-color);
+  opacity: 0.5;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  .listItem {
+    text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s ease;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.2rem;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+  .listItem:hover {
+    border-bottom: 1px solid var(--border-color);
+    transition: border-bottom 0.5s ease;
+  }
+}
+
+.listEnterActive {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.listEnterDone {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    position: relative;
+    left: auto;
+    flex-direction: row;
+    opacity: 1;
+    transform: scaleY(1);
+    height: auto;
+    width: auto;
+    top: 0;
+  }
+}
+
+@keyframes buttonAnimationGetActiveLine1 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+  100% {
+    transform: translateY(0.5rem) rotate(45deg);
+  }
+}
+
+@keyframes buttonAnimationGetCloseLine1 {
+  0% {
+    transform: translateY(0.5rem) rotate(45deg);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonAnimationGetActiveLine2 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+}
+
+@keyframes buttonAnimationGetCloseLine2 {
+  0% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonAnimationGetActiveLine3 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(-0.5rem) rotate(135deg);
+  }
+}
+
+@keyframes buttonAnimationGetCloseLine3 {
+  0% {
+    transform: translateY(-0.5rem) rotate(135deg);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

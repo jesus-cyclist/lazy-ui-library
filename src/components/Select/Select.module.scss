@@ -1,24 +1,31 @@
 .select {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: inherit;
+  line-height: 1.2;
+  background: var(--background-color);
+  color: var(--text-color);
   position: relative;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 2px;
-  max-width: 15em;
+  border-radius: 0.1rem;
+  max-width: 15rem;
   width: 100%;
-  padding: 0.2em;
+  padding: 0.1rem 0.2rem;
   cursor: pointer;
   text-transform: uppercase;
   svg {
     margin-left: 10px;
-    width: 0.8em;
-    height: 0.8em;
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }
 
 .selectDisabled {
   opacity: 0.3;
+  cursor: auto;
 }
 
 .angle {
@@ -26,7 +33,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.2em;
+  padding: 0.2rem;
 }
 
 .angleEnter {
@@ -64,13 +71,15 @@
 .selectList {
   list-style: none;
   position: absolute;
-  top: 2em;
+  top: 2rem;
   left: -1px;
   right: -1px;
   border: 1px solid black;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.5s ease;
+  border-radius: 0.1rem;
+  z-index: 10;
 }
 
 .selectListEnter {
@@ -126,7 +135,7 @@
 .selectOption {
   display: inline-block;
   width: 100%;
-  padding: 0.2em;
+  padding: 0.2rem;
   cursor: pointer;
   transform: translateX(0px);
   transition: transform 0.5s ease;
@@ -139,6 +148,10 @@
 }
 
 .selectOption:hover {
-  transform: translateX(5px);
-  transition: transform 0.5s ease;
+  background: var(--background-color-hover);
+  transition: background 0.5s ease;
+  span {
+    transform: translateX(5px);
+    transition: transform 0.5s ease;
+  }
 }

@@ -1,24 +1,103 @@
-.container {}
+.accordion {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.2;
+}
 
 .triggerButton {
   cursor: pointer;
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
+  width: 100%;
   border: none;
-  background: none;
+  background: var(--background-color-secondary-hover);
+  border: 1px solid var(--border-color);
+  border-radius: 0.1rem;
+  padding: 0.1rem 0.2rem;
+  font-family: inherit;
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-right: 5rem;
+  text-transform: uppercase;
+  font-weight: inherit;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
-.indicator {
-  font-size: 2rem;
+.angle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.angleEnter {
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+}
+
+.angleEnterActive {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleEnterDone {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleExit {
+  svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.angleExitActive {
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
 }
 
 .content {
-  font-size: 1.7rem;
-  padding: 1rem;
+  opacity: 0.2;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0.1rem;
+  border-radius: 0.1rem;
+  padding: 0.1rem 0.2rem;
+}
+
+.contentEnter {
+  transform: scaleY(0);
+  opacity: 0.2;
+}
+
+.contentEnterActive {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.contentEnterDone {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.contentExit {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.contentExitActive {
+  opacity: 0.2;
+  transform: scaleY(0);
 }

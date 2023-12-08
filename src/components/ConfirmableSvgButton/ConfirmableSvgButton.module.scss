@@ -1,0 +1,76 @@
+.button {
+  border-radius: 0.1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.2;
+  font-size: 1rem;
+  font-weight: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.confrimIcon,
+.icon,
+.confrimIconActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.icon {
+  animation: makeVisible 0.5s ease forwards;
+}
+
+.confrimIconActive {
+  z-index: 2;
+  position: absolute;
+  color: #3dbb0f;
+}
+
+.confrimIcon {
+  display: none;
+  position: absolute;
+  opacity: 0;
+  animation: makeHidden 0.5s ease forwards;
+}
+
+.iconEnterDone {
+  animation: makeHidden 0.5s ease forwards;
+}
+
+.confrimIconEnterDone {
+  z-index: 2;
+  display: flex;
+  animation: makeVisible 0.5s ease forwards;
+}
+
+@keyframes makeHidden {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes makeVisible {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

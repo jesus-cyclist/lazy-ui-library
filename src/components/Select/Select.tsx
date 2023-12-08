@@ -1,9 +1,11 @@
-import React, { FC, ReactNode, createRef, useEffect, useState } from "react";
-import styles from "./Select.module.scss";
-import { ReactComponent as Angle } from "../../core/assets/icons/angle.svg";
+import React, { FC, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { ReactComponent as Angle } from "../../core/assets/icons/angle.svg";
+import styles from "./Select.module.scss";
 
 export type TSelectProps = {
+  isOpen: boolean;
+  open: Function;
   options: Array<string>;
   value: string;
   onChange: Function;
@@ -13,7 +15,9 @@ export type TSelectProps = {
 
 export const Select: FC<TSelectProps> = (props) => {
   const {
-    options,
+    isOpen = false,
+    open,
+    options = [],
     value,
     onChange,
     placeholder = "",
@@ -21,7 +25,8 @@ export const Select: FC<TSelectProps> = (props) => {
   } = props;
 
   const [selectedValue, setSelectedValue] = useState(placeholder);
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const angleRef = useRef(null);
+  const listRef = useRef(null);
 
   const handleListItemClick = (listItem: string) => {
     if (isDisabled) {
@@ -32,7 +37,7 @@ export const Select: FC<TSelectProps> = (props) => {
   };
 
   const getSelectClassName = () =>
-    isDisabled ? `${styles.select} ${styles.selectDisabled}` : styles.select;
+    `${styles.select} ${isDisabled && styles.selectDisabled}`;
 
   return (
     <div
@@ -41,13 +46,14 @@ export const Select: FC<TSelectProps> = (props) => {
         if (isDisabled) {
           return;
         }
-        setIsSelectOpen(!isSelectOpen);
+        open();
       }}
     >
       {selectedValue}
       <CSSTransition
-        in={isSelectOpen}
+        in={isOpen}
         timeout={500}
+        nodeRef={angleRef}
         classNames={{
           enter: styles.angleEnter,
           enterActive: styles.angleEnterActive,
@@ -56,14 +62,15 @@ export const Select: FC<TSelectProps> = (props) => {
           exitActive: styles.angleExitActive,
         }}
       >
-        <div className={styles.angle}>
+        <div className={styles.angle} ref={angleRef}>
           <Angle />
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={isSelectOpen}
+        in={isOpen}
         timeout={500}
+        nodeRef={listRef}
         classNames={{
           enter: styles.selectListEnter,
           enterActive: styles.selectListEnterActive,
@@ -72,7 +79,7 @@ export const Select: FC<TSelectProps> = (props) => {
           exitActive: styles.selectListExitActive,
         }}
       >
-        <ul className={styles.selectList}>
+        <ul className={styles.selectList} ref={listRef}>
           {options.map((li) => (
             <li key={li} className={styles.selectOption}>
               <span onClick={(e) => handleListItemClick(li)}>{li}</span>
