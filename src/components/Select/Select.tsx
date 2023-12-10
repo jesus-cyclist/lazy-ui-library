@@ -7,26 +7,40 @@ export type TSelectProps = {
   isOpen: boolean;
   open: Function;
   options: Array<string>;
-  value: string;
-  onChange: Function;
+  onChange?: Function;
   placeholder?: string;
   isDisabled?: boolean;
+  innerControl: boolean;
 };
 
 export const Select: FC<TSelectProps> = (props) => {
   const {
-    isOpen = false,
+    isOpen: isOpenProp,
     open,
     options = [],
-    value,
     onChange,
     placeholder = "",
     isDisabled = false,
+    innerControl = true,
   } = props;
 
   const [selectedValue, setSelectedValue] = useState(placeholder);
   const angleRef = useRef(null);
   const listRef = useRef(null);
+
+  const [isOpenState, setIsOpenState] = useState(false);
+
+  const handleClickSelect = () => {
+    console.log("click", isDisabled, innerControl);
+    if (isDisabled) {
+      return;
+    }
+    if (innerControl) {
+      setIsOpenState(!isOpenState);
+    } else {
+      open();
+    }
+  };
 
   const handleListItemClick = (listItem: string) => {
     if (isDisabled) {
@@ -39,33 +53,29 @@ export const Select: FC<TSelectProps> = (props) => {
   const getSelectClassName = () =>
     `${styles.select} ${isDisabled && styles.selectDisabled}`;
 
+  const isOpen = innerControl ? isOpenState : isOpenProp;
+
   return (
-    <div
-      className={getSelectClassName()}
-      onClick={(e) => {
-        if (isDisabled) {
-          return;
-        }
-        open();
-      }}
-    >
-      {selectedValue}
-      <CSSTransition
-        in={isOpen}
-        timeout={500}
-        nodeRef={angleRef}
-        classNames={{
-          enter: styles.angleEnter,
-          enterActive: styles.angleEnterActive,
-          enterDone: styles.angleEnterDone,
-          exit: styles.angleExit,
-          exitActive: styles.angleExitActive,
-        }}
-      >
-        <div className={styles.angle} ref={angleRef}>
-          <Angle />
-        </div>
-      </CSSTransition>
+    <div className={getSelectClassName()}>
+      <div className={styles.placeholder} onClick={(e) => handleClickSelect()}>
+        {selectedValue}
+        <CSSTransition
+          in={isOpen}
+          timeout={500}
+          nodeRef={angleRef}
+          classNames={{
+            enter: styles.angleEnter,
+            enterActive: styles.angleEnterActive,
+            enterDone: styles.angleEnterDone,
+            exit: styles.angleExit,
+            exitActive: styles.angleExitActive,
+          }}
+        >
+          <div className={styles.angle} ref={angleRef}>
+            <Angle />
+          </div>
+        </CSSTransition>
+      </div>
 
       <CSSTransition
         in={isOpen}

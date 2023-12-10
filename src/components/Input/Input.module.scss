@@ -27,20 +27,15 @@
   left: 0.2rem;
   display: inline-block;
   cursor: text;
+}
+
+.placeholder::first-letter {
   text-transform: uppercase;
 }
 
-.placeholderEnter {
-  transform: translate(0, -50%);
+.placeholderActive {
+  transform: translateY(-2rem);
   transition: transform 0.5s ease;
-}
-
-.placeholderEnterActive {
-  transform: translateY(-2rem);
-}
-
-.placeholderEnterDone {
-  transform: translateY(-2rem);
 }
 
 input::placeholder {
@@ -64,11 +59,8 @@ input::placeholder {
   align-items: center;
   cursor: pointer;
   svg {
-    height: 0.6rem;
-    width: 0.6rem;
     opacity: 0;
-    transform: rotate(45deg);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: opacity 0.5s ease;
   }
 }
 
@@ -76,41 +68,25 @@ input::placeholder {
   svg {
     height: 0.8rem;
     width: 0.8rem;
-    transform: rotate(0deg);
   }
 }
 
-.revealActionEnter {
-  svg {
-    opacity: 0;
-  }
-}
-.revealActionEnterActive {
+.revealActionActive {
   svg {
     opacity: 1;
-
     transition: opacity 0.5s ease;
   }
 }
-.revealActionEnterDone {
-  svg {
-    opacity: 1;
-  }
-}
 
-.revealActionEnter {
+.deleteAction {
   svg {
-    opacity: 0;
-  }
-}
-.deleteActionEnterActive {
-  svg {
-    opacity: 1;
-    transform: rotate(0deg);
+    height: 0.6rem;
+    width: 0.6rem;
+    transform: rotate(45deg);
     transition: transform 0.5s ease, opacity 0.5s ease;
   }
 }
-.deleteActionEnterDone {
+.deleteActionActive {
   svg {
     opacity: 1;
     transform: rotate(0deg);

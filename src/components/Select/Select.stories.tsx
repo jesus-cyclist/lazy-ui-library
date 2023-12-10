@@ -7,16 +7,17 @@ export default {
   title: "components/Select",
   component: Select,
   args: {
-    options: ["one", "two", "three"],
-    value: "two",
-    onChange: () => {},
+    options: ["one", "two", "threethreethreethree"],
+    onChange: function () {},
     placeholder: "placeholder",
+    open: function () {},
     isDisabled: true,
     isOpen: false,
+    innerControl: true,
   },
   parameters: {
     controls: {
-      exclude: ["onChange", "value", "open"],
+      exclude: ["onChange", "value", "open", "options"],
     },
   },
 } as Meta<TSelectStoryProps>;
@@ -24,12 +25,12 @@ export default {
 type TSelectStoryProps = Pick<
   TSelectProps,
   | "options"
-  | "value"
   | "onChange"
   | "placeholder"
   | "isDisabled"
   | "open"
   | "isOpen"
+  | "innerControl"
 >;
 
 export const SelectStoryTemplate: StoryFn<TSelectStoryProps> = ({

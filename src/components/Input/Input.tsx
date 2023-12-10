@@ -1,5 +1,4 @@
 import React, { FC, useRef, useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import { ReactComponent as Cross } from "../../core/assets/icons/cross.svg";
 import { ReactComponent as EyeClose } from "../../core/assets/icons/eye-close.svg";
 import { ReactComponent as Eye } from "../../core/assets/icons/eye.svg";
@@ -36,6 +35,12 @@ export const Input: FC<TInputProps> = (props) => {
     inputRef.current.focus();
   };
 
+  const getActiveClassName = (className: string, isActive: boolean) => {
+    return isActive
+      ? `${styles[className]} ${styles[`${className}Active`]}`
+      : styles[className];
+  };
+
   return (
     <div className={styles.container}>
       <input
@@ -49,63 +54,32 @@ export const Input: FC<TInputProps> = (props) => {
         required
         disabled={disabled}
       ></input>
-      <CSSTransition
-        in={!!value}
-        timeout={500}
-        nodeRef={placeholderRef}
-        classNames={{
-          enter: styles.placeholderEnter,
-          enterActive: styles.placeholderEnterActive,
-          enterDone: styles.placeholderEnterDone,
-        }}
+
+      <span
+        className={getActiveClassName("placeholder", !!value)}
+        onClick={handleClick}
+        ref={placeholderRef}
       >
-        <span
-          className={styles.placeholder}
-          onClick={handleClick}
-          ref={placeholderRef}
-        >
-          {placeholder}
-        </span>
-      </CSSTransition>
+        {placeholder}
+      </span>
+
       {type === "text" && !isPasswordRevealed && (
-        <CSSTransition
-          in={!!value}
-          timeout={500}
-          nodeRef={crossRef}
-          classNames={{
-            enter: styles.deleteActionEnter,
-            enterActive: styles.deleteActionEnterActive,
-            enterDone: styles.deleteActionEnterDone,
-          }}
+        <div
+          className={getActiveClassName("deleteAction", !!value)}
+          ref={crossRef}
+          onClick={(e) => onClear()}
         >
-          <div
-            className={styles.deleteAction}
-            ref={crossRef}
-            onClick={(e) => onClear()}
-          >
-            <Cross />
-          </div>
-        </CSSTransition>
+          <Cross />
+        </div>
       )}
       {(type === "password" || isPasswordRevealed) && (
-        <CSSTransition
-          in={!!value}
-          timeout={500}
-          nodeRef={crossRef}
-          classNames={{
-            enter: styles.revealActionEnter,
-            enterActive: styles.revealActionEnterActive,
-            enterDone: styles.revealActionEnterDone,
-          }}
+        <div
+          className={getActiveClassName("revealAction", !!value)}
+          ref={crossRef}
+          onClick={(e) => setIsPasswordRevealed(!isPasswordRevealed)}
         >
-          <div
-            className={styles.revealAction}
-            ref={crossRef}
-            onClick={(e) => setIsPasswordRevealed(!isPasswordRevealed)}
-          >
-            {isPasswordRevealed ? <EyeClose /> : <Eye />}
-          </div>
-        </CSSTransition>
+          {isPasswordRevealed ? <EyeClose /> : <Eye />}
+        </div>
       )}
     </div>
   );

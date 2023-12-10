@@ -12,7 +12,7 @@ export type TNavigationProps = {
 };
 
 export const Navigation: FC<TNavigationProps> = (props) => {
-  const { options, logo } = props;
+  const { options = [], logo } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const listRef = useRef(null);

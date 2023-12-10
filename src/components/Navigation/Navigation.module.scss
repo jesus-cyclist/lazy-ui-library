@@ -9,6 +9,15 @@
   position: relative;
 }
 
+.logo {
+  a {
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
+
 .hambButton {
   display: flex;
   justify-content: center;
@@ -79,6 +88,10 @@
       gap: 0.2rem;
       text-decoration: none;
       color: inherit;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
     }
   }
   .listItem:hover {
