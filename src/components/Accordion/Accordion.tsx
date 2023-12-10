@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useRef } from "react";
+import React, { FC, ReactNode, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { ReactComponent as Angle } from "../../core/assets/icons/angle.svg";
 import styles from "./Accordion.module.scss";
@@ -9,13 +9,33 @@ export type TAccordionProps = {
   onToggle?: Function;
   children: ReactNode;
   title: string;
+  innerControl: boolean;
 };
 
 export const Accordion: FC<TAccordionProps> = (props) => {
-  const { isOpen, onToggle, children, title, open } = props;
+  const {
+    isOpen: isOpenProp,
+    onToggle: onToggleProp,
+    children,
+    title,
+    open,
+    innerControl = true,
+  } = props;
+
+  const [isOpenState, setIsOpenState] = useState(false);
 
   const contentRef = useRef(null);
   const angleRef = useRef(null);
+
+  const onToggle = () => {
+    if (innerControl) {
+      setIsOpenState((prevIsOpen) => !prevIsOpen);
+    } else {
+      onToggleProp?.();
+    }
+  };
+
+  const isOpen = innerControl ? isOpenState : isOpenProp;
 
   return (
     <div className={styles.accordion}>

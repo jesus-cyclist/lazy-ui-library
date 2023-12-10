@@ -31,7 +31,6 @@ export const Select: FC<TSelectProps> = (props) => {
   const [isOpenState, setIsOpenState] = useState(false);
 
   const handleClickSelect = () => {
-    console.log("click", isDisabled, innerControl);
     if (isDisabled) {
       return;
     }
@@ -46,8 +45,12 @@ export const Select: FC<TSelectProps> = (props) => {
     if (isDisabled) {
       return;
     }
-    onChange(listItem);
     setSelectedValue(listItem);
+    if (innerControl) {
+      setIsOpenState(!isOpenState);
+      return;
+    }
+    onChange(listItem);
   };
 
   const getSelectClassName = () =>

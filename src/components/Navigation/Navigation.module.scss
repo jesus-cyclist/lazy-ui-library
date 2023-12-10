@@ -5,11 +5,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
-  height: 2rem;
+  height: 3rem;
   position: relative;
 }
 
 .logo {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   a {
     svg {
       width: 2rem;

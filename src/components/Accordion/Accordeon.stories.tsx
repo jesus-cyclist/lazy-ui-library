@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, AccordionProps } from "./Accordion";
+import { Accordion, TAccordionProps } from "./Accordion";
 import type { Meta, StoryFn } from "@storybook/react";
 
 export default {
@@ -13,14 +13,14 @@ export default {
   },
   parameters: {
     controls: {
-      exclude: ["onToggle", "open"],
+      exclude: ["onToggle", "open", "innerControl"],
     },
   },
 } as Meta<TAccordionStoryProps>;
 
 type TAccordionStoryProps = Pick<
-  AccordionProps,
-  "isOpen" | "onToggle" | "children" | "title" | "open"
+  TAccordionProps,
+  "isOpen" | "onToggle" | "children" | "title" | "open" | "innerControl"
 >;
 
 export const AccordionStoryTemplate: StoryFn<TAccordionStoryProps> = ({
