@@ -1,6 +1,6 @@
 # lazy-ui-library
 
-### .npmrc configaration
+## .npmrc configaration
 
 ```registry=https://registry.npmjs.org/
 @jesyscyclist:registry=https://npm.pkg.github.com/
