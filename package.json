@@ -1,5 +1,5 @@
 {
-  "name": "@jesyscyclist/lazy-ui-library",
+  "name": "@jesys-cyclist/lazy-ui-library",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/jesyscyclist"
   },
